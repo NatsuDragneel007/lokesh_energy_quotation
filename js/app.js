@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         // In a real application, replace this with your actual webhook URL
-        const WEBHOOK_URL = 'https://example.com/api/submit-quote';
+        const WEBHOOK_URL = 'http://localhost:5678/webhook/0d8d38a3-d68f-4168-baf1-1f5c565f189b';
         
         // Simulate API call
         showToast('Submitting quotation...');
