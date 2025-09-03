@@ -410,60 +410,67 @@ document.addEventListener('DOMContentLoaded', function() {
         generatePreview();
     }
     
-    function submitQuote() {
-        // Calculate GST and total
-        const amount = parseFloat(formData.amount) || 0;
-        const gstPercentage = parseFloat(formData.gstPercentage) || 0;
-        const gstAmount = amount * (gstPercentage / 100);
-        const totalAmount = amount + gstAmount;
-        
-        // Add calculated values to form data
-        formData.gstAmount = gstAmount;
-        formData.totalAmount = totalAmount;
-        
-        // Get the preview HTML
-        const previewHTML = previewContent.innerHTML;
-        
-        // Prepare payload
-        const payload = {
-            html: previewHTML,
-            data: formData
-        };
-        
-        // In a real application, replace this with your actual webhook URL
-        const WEBHOOK_URL = 'http://localhost:5678/webhook/0d8d38a3-d68f-4168-baf1-1f5c565f189b';
-        
-        // Simulate API call
-        showToast('Submitting quotation...');
-        
-        // Simulate network delay
-        setTimeout(() => {
-            // This is where you would make the actual API call
-            // fetch(WEBHOOK_URL, {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(payload)
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     showToast('Quotation submitted successfully!');
-            //     closePreview();
-            //     clearForm();
-            // })
-            // .catch(error => {
-            //     showToast('Error submitting quotation', 'error');
-            //     console.error('Error:', error);
-            // });
-            
-            // For demo purposes, we'll just show a success message
-            showToast('Quotation submitted successfully!');
-            closePreview();
-            clearForm();
-        }, 1500);
-    }
+   function submitQuote() {
+    // Calculate GST and total
+    const amount = parseFloat(formData.amount) || 0;
+    const gstPercentage = parseFloat(formData.gstPercentage) || 0;
+    const gstAmount = amount * (gstPercentage / 100);
+    const totalAmount = amount + gstAmount;
     
+    // Add calculated values to form data
+    formData.gstAmount = gstAmount;
+    formData.totalAmount = totalAmount;
+    
+    // Get the preview HTML
+    const previewHTML = previewContent.innerHTML;
+    
+    // Prepare payload
+    const payload = {
+        html: previewHTML,
+        data: formData
+    };
+    
+    // Your actual n8n webhook URL
+    const WEBHOOK_URL = 'http://localhost:5678/webhook/0d8d38a3-d68f-4168-baf1-1f5c565f189b'; // Replace with your actual n8n webhook URL
+    
+    // Disable button and show loading state
+    const submitButton = document.getElementById('submit-quote');
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Submitting...';
+    
+    showToast('Submitting quotation...');
+    
+    // Make the actual API call
+    fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+        showToast('Quotation submitted successfully!');
+        closePreview();
+        clearForm();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showToast('Error submitting quotation. Please try again.', 'error');
+    })
+    .finally(() => {
+        // Re-enable button and restore text
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+    });
+}
     function showToast(message, type = 'success') {
         toastMessage.textContent = message;
         
