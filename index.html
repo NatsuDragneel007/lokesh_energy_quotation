@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokesh Energy - Quotation Form</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-solar-panel"></i>
+                <h1>Lokesh Energy</h1>
+            </div>
+            <p>Forge Quote Form</p>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress">
+                <div class="progress-step active-step" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Customer Info</span>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Project</span>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Accessories</span>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <span class="step-number">4</span>
+                    <span class="step-label">Financials</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <form id="quotation-form">
+                <!-- Step 1: Customer Info -->
+                <div class="form-step active-step" id="step-1">
+                    <h2>Customer Information</h2>
+                    <div class="form-group">
+                        <label for="customer-name">Customer Name *</label>
+                        <input type="text" id="customer-name" name="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email ID *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact No *</label>
+                        <input type="tel" id="contact" name="contact" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="msecdl">MSEDCL Consumer No *</label>
+                        <input type="text" id="msecdl" name="msecdl" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location-pin">Location Pin *</label>
+                        <input type="text" id="location-pin" name="locationPin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address *</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="btn secondary-btn" id="clear-btn">Clear</button>
+                        <button type="button" class="btn primary-btn" id="next-1">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Project Requirements -->
+                <div class="form-step" id="step-2">
+                    <h2>Project Requirements</h2>
+                    <div class="form-group">
+                        <label for="requirement-type">Requirement Type *</label>
+                        <select id="requirement-type" name="requirementType" required>
+                            <option value="">Select Requirement Type</option>
+                            <option value="residential">Residential</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="industrial">Industrial</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phase-selection">Phase Selection *</label>
+                        <select id="phase-selection" name="phaseSelection" required>
+                            <option value="">Select Phase</option>
+                            <option value="single">Single Phase</option>
+                            <option value="three">Three Phase</option>
+                        </select>
+                    </div>
+                    
+                    <div class="repeatable-section">
+                        <h3>System Details</h3>
+                        <div id="system-details-container">
+                            <div class="system-detail-item">
+                                <div class="form-group">
+                                    <label>System kW *</label>
+                                    <input type="number" step="0.01" name="systemKw" class="system-kw" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>No. of Panels *</label>
+                                    <input type="number" name="noOfPanels" class="no-of-panels" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Panel kW *</label>
+                                    <input type="number" step="0.01" name="panelKw" class="panel-kw" required>
+                                </div>
+                                <button type="button" class="btn remove-btn remove-system-detail">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn secondary-btn add-system-detail">
+                            <i class="fas fa-plus"></i> Add System
+                        </button>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="btn secondary-btn" id="back-2">Back</button>
+                        <button type="button" class="btn primary-btn" id="next-2">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Common -->
+                <div class="form-step" id="step-3">
+                    <h2>Accessories</h2>
+                    <div class="form-group">
+                        <label>Select Accessories *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="accessories" value="solar-inverter">
+                                <span>Solar Inverter</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="accessories" value="battery">
+                                <span>Battery Storage</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="accessories" value="monitoring-system">
+                                <span>Monitoring System</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="accessories" value="mounting-structure">
+                                <span>Mounting Structure</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="accessories" value="dc-cables">
+                                <span>DC Cables</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="accessories" value="ac-cables">
+                                <span>AC Cables</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="accessories" value="earthing-kit">
+                                <span>Earthing Kit</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="accessories" value="lightning-arrester">
+                                <span>Lightning Arrester</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="btn secondary-btn" id="back-3">Back</button>
+                        <button type="button" class="btn primary-btn" id="next-3">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Financials -->
+                <div class="form-step" id="step-4">
+                    <h2>Financial Details</h2>
+                    <div class="form-group">
+                        <label for="amount">Amount (₹) *</label>
+                        <input type="number" step="0.01" id="amount" name="amount" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gst-percentage">GST % *</label>
+                        <input type="number" step="0.01" id="gst-percentage" name="gstPercentage" required>
+                    </div>
+                    
+                    <div class="form-navigation">
+                        <button type="button" class="btn secondary-btn" id="back-4">Back</button>
+                        <button type="button" class="btn secondary-btn" id="save-draft">Save Draft</button>
+                        <button type="button" class="btn secondary-btn" id="preview-btn">Preview</button>
+                        <button type="submit" class="btn primary-btn">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Preview Modal -->
+        <div class="modal" id="preview-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Quotation Preview</h2>
+                    <button class="close-modal" id="close-modal">&times;</button>
+                </div>
+                <div class="modal-body" id="preview-content">
+                    <!-- Preview content will be generated here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn secondary-btn" id="close-preview">Close</button>
+                    <button type="button" class="btn primary-btn" id="submit-quote">Submit Quotation</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div class="toast" id="success-toast">
+            <i class="fas fa-check-circle"></i>
+            <span id="toast-message">Success!</span>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
