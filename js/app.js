@@ -431,7 +431,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     // Your actual n8n webhook URL
-    const WEBHOOK_URL = 'http://localhost:5678/webhook/0d8d38a3-d68f-4168-baf1-1f5c565f189b'; // Replace with your actual n8n webhook URL
+    const WEBHOOK_URL = 'http://localhost:5678/webhook-test/0d8d38a3-d68f-4168-baf1-1f5c565f189b'; // Replace with your actual n8n webhook URL
     
     // Disable button and show loading state
     const submitButton = document.getElementById('submit-quote');
